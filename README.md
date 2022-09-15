@@ -1,4 +1,4 @@
-# vue3-mini-project-1
+# 전국 둘레 길 조회
 
 This template should help get you started developing with Vue 3 in Vite.
 
