@@ -1,129 +1,91 @@
 <template>
-	<v-card v-resize="onResize" :style="`height:${innerHeight}px;`">
-		<v-layout style="height: 100%">
-			<v-app-bar color="primary" density="compact">
-				<template v-slot:prepend>
-					<v-app-bar-nav-icon
-						@click.stop="drawer = !drawer"
-					></v-app-bar-nav-icon>
-				</template>
-				<v-app-bar-title>길</v-app-bar-title>
+	<TheViewLayout>
+		<template #mainPanel>
+			<v-container>
+				<h1>List</h1>
+			</v-container>
+			<!-- 검색 창-->
+			<v-container>
+				<v-row>
+					<v-col cols="11">
+						<v-combobox
+							v-model="selectedArea"
+							:items="inputAreaList"
+							label="위치 선택"
+							multiple
+							chips
+						>
+							<template v-slot:selection="data">
+								<v-chip
+									:key="JSON.stringify(data.item)"
+									v-bind="data.attrs"
+									:input-value="data.selected"
+									:disabled="data.disabled"
+									@click:close="data.parent.selectItem(data.item)"
+								>
+									<v-avatar class="accent white--text" left></v-avatar>
+									{{ data.item }}
+								</v-chip>
+							</template>
+						</v-combobox>
+					</v-col>
+					<v-col cols="1">
+						<v-btn
+							rounded="lg"
+							color="primary"
+							size="large"
+							@click="searchList"
+						>
+							검색
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-container>
+			<!-- 총 개수 -->
+			<v-container>
+				<div>총 개수 : {{ recordTotal }}</div>
+			</v-container>
 
-				<v-btn rounded="lg" color="white" size="large" @click="userLoginCheck">
-					{{ userInfo.isLogined ? '로그아웃 ' : '로그인' }}
-				</v-btn>
-			</v-app-bar>
-
-			<v-navigation-drawer v-model="drawer" bottom temporary>
-				<v-list density="compact">
-					<v-card width="400" class="mt-4 mb-4">
-						<template v-slot:title> Profile </template>
-
-						<template v-slot:subtitle> {{ userInfo.userId }} </template>
-
-						<template v-slot:text> {{ userInfo.nickname }} </template>
-					</v-card>
-					<v-list-item
-						v-for="(item, i) in items"
-						:key="i"
-						:value="item.value"
-						active-color="primary"
-						@click="routeUrlChange(item.url)"
-					>
-						<template v-slot:prepend>
-							<v-icon :icon="item.icon"></v-icon>
-							<v-list-item-title>{{ item.title }}</v-list-item-title>
-						</template>
-					</v-list-item>
-				</v-list>
-			</v-navigation-drawer>
-
-			<v-main>
-				<v-container>
-					<h1>List</h1>
-				</v-container>
-				<!-- 검색 창-->
-				<v-container>
-					<v-row>
-						<v-col cols="11">
-							<v-combobox
-								v-model="selectedArea"
-								:items="inputAreaList"
-								label="위치 선택"
-								multiple
-								chips
-							>
-								<template v-slot:selection="data">
-									<v-chip
-										:key="JSON.stringify(data.item)"
-										v-bind="data.attrs"
-										:input-value="data.selected"
-										:disabled="data.disabled"
-										@click:close="data.parent.selectItem(data.item)"
-									>
-										<v-avatar class="accent white--text" left></v-avatar>
-										{{ data.item }}
-									</v-chip>
-								</template>
-							</v-combobox>
-						</v-col>
-						<v-col cols="1">
-							<v-btn
-								rounded="lg"
-								color="primary"
-								size="large"
-								@click="searchList"
-							>
-								검색
-							</v-btn>
-						</v-col>
-					</v-row>
-				</v-container>
-				<!-- 총 개수 -->
-				<v-container>
-					<div>총 개수 : {{ recordTotal }}</div>
-				</v-container>
-
-				<!-- Table List -->
-				<v-container>
-					<v-table density="compact">
-						<thead>
-							<tr>
-								<th class="text-left">길명</th>
-								<th class="text-left">총길이</th>
-								<th class="text-left">총소요시간</th>
-								<th class="text-left">시작지점명</th>
-								<th class="text-left">종료지점명</th>
-								<th class="text-left">제공기관</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr
-								v-for="item in recordList"
-								:key="item.name"
-								@click="roadRecordDetail(item)"
-							>
-								<td>{{ item.stretNm }}</td>
-								<td>{{ item.stretLt }}</td>
-								<td>{{ item.reqreTime }}</td>
-								<td>{{ item.beginSpotNm }}</td>
-								<td>{{ item.endSpotNm }}</td>
-								<td>{{ item.insttName }}</td>
-							</tr>
-						</tbody>
-					</v-table>
-				</v-container>
-				<v-container>
-					<div class="text-center">
-						<v-pagination
-							v-model="params._page"
-							:length="Math.ceil(recordTotal / params._limit)"
-							:total-visible="7"
-						></v-pagination>
-					</div> </v-container
-			></v-main>
-		</v-layout>
-	</v-card>
+			<!-- Table List -->
+			<v-container>
+				<v-table density="compact">
+					<thead>
+						<tr>
+							<th class="text-left">길명</th>
+							<th class="text-left">총길이</th>
+							<th class="text-left">총소요시간</th>
+							<th class="text-left">시작지점명</th>
+							<th class="text-left">종료지점명</th>
+							<th class="text-left">제공기관</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							v-for="item in recordList"
+							:key="item.name"
+							@click="roadRecordDetail(item)"
+						>
+							<td>{{ item.stretNm }}</td>
+							<td>{{ item.stretLt }}</td>
+							<td>{{ item.reqreTime }}</td>
+							<td>{{ item.beginSpotNm }}</td>
+							<td>{{ item.endSpotNm }}</td>
+							<td>{{ item.insttName }}</td>
+						</tr>
+					</tbody>
+				</v-table>
+			</v-container>
+			<v-container>
+				<div class="text-center">
+					<v-pagination
+						v-model="params._page"
+						:length="Math.ceil(recordTotal / params._limit)"
+						:total-visible="7"
+					></v-pagination>
+				</div>
+			</v-container>
+		</template>
+	</TheViewLayout>
 
 	<v-row justify="center">
 		<v-dialog v-model="dialog">
@@ -134,7 +96,6 @@
 					cover
 				></v-img>
 				<v-card-title> {{ detailInfo.stretNm }} </v-card-title>
-				<!-- Course Info -->
 				<v-card-subtitle>
 					Contact Info :
 					{{ detailInfo.phoneNumber + ' / ' + detailInfo.insttName }}
@@ -168,7 +129,6 @@
 					></v-btn>
 				</v-card-actions>
 
-				<!-- Detail popup -->
 				<v-expand-transition>
 					<div v-show="show">
 						<v-divider></v-divider>
@@ -223,18 +183,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, getCurrentInstance, watch } from 'vue';
+import TheViewLayout from '@/layouts/TheViewLayout.vue';
+import { ref, onMounted, watch } from 'vue';
 import { getRoadRecordsList } from '@/api/common.js';
 import { getAreaList } from '@/api/area.js';
-import { useAuthStore } from '@/stores/auth';
-import { useRouter } from 'vue-router';
 
-const router = useRouter();
 /**
  * 유저 정보
  */
-const userInfo = useAuthStore().userInfo;
-const { proxy } = getCurrentInstance();
 
 const show = ref(false);
 const selectedArea = ref([]);
@@ -307,7 +263,6 @@ const roadRecordDetail = item => {
 			num: idx + 1,
 		};
 	});
-	console.log('click', item);
 	console.log('detailCoursInfo', detailCoursInfo.value);
 };
 
@@ -332,12 +287,9 @@ const searchList = () => {
 	fetchRoadRecordsList();
 };
 
-const innerHeight = ref(0);
 onMounted(() => {
 	fetchAreaList();
 	fetchRoadRecordTotal();
-	console.log('tete', window.innerHeight);
-	innerHeight.value = window.innerHeight;
 });
 
 /**
@@ -356,70 +308,6 @@ watch(
 	},
 	{ deep: true },
 );
-
-const items = ref([
-	{
-		icon: 'mdi-inbox',
-		title: 'List',
-		value: 'list',
-		url: '/',
-	},
-	{
-		icon: 'mdi-star',
-		title: 'Q&A',
-		value: 'qna',
-		url: '/test',
-	},
-	{
-		icon: 'mdi-send',
-		title: 'Notice',
-		value: 'notice',
-		url: '/',
-	},
-	{
-		icon: 'mdi-email-open',
-		title: 'myInfo',
-		value: 'myInfo',
-		url: '/',
-	},
-]);
-// 메뉴클릭시 이동
-const routeUrlChange = url => {
-	console.log('url', url);
-	router.push(url);
-};
-
-const drawer = ref(false);
-const group = ref(null);
-watch(
-	() => group.value,
-	() => {
-		drawer.value = false;
-	},
-	{ deep: true },
-);
-
-// 로그인 여부에 따라 로그인, 로그아웃 처리
-
-const store = useAuthStore();
-const { CLEAR_SESSION } = store;
-const userLoginCheck = () => {
-	if (userInfo.isLogined) {
-		CLEAR_SESSION();
-		logout();
-	} else {
-		router.push('/login');
-	}
-};
-// 로그아웃 url 이동
-const logout = () => {
-	location.href = `https://kauth.kakao.com/oauth/logout?client_id=${proxy.restApiKey}&logout_redirect_uri=${proxy.redirectUri}`;
-};
-
-// screen resize
-const onResize = () => {
-	innerHeight.value = window.innerHeight;
-};
 </script>
 
 <style lang="scss" scoped></style>

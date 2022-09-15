@@ -59,3 +59,10 @@ Encoding 인증
 Decoding 인증
 `http://api.data.go.kr/openapi/tn_pubr_public_stret_tursm_info_napi?serviceKey=8SijyesKfn+CsFIvHOJH4vstiQDcX+3o+YNWRf0EcuSFhw/YGPVeIFyc+ROSfhduIKsyBFSWQ2M4/Hw8TTWIYQ==`,
 ```
+### 적용 기술 스택 ###
+``` sh
+server & DB : json-server
+client : vue3, composition api
+UI : UI Framework Vutify 3.0 (Beta) 사용
+OPEN API : Kakao [Login, Logout, token]
+```

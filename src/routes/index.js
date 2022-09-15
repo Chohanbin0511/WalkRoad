@@ -16,6 +16,12 @@ const otherRoutes = [
 		meta: { anonymous: true },
 		component: () => import('@/views/user/LoginView.vue'),
 	},
+	{
+		path: '/updateNote',
+		name: 'UpdateNote',
+		meta: { anonymous: true },
+		component: () => import('@/views/projectInfo/ProjectUpdateView.vue'),
+	},
 ];
 
 let allRoutes = [];
