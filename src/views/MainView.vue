@@ -90,19 +90,10 @@
 						<thead>
 							<tr>
 								<th class="text-left">길명</th>
-								<!-- <th class="text-left">stretIntrcn:길소개</th> -->
 								<th class="text-left">총길이</th>
 								<th class="text-left">총소요시간</th>
 								<th class="text-left">시작지점명</th>
-								<!-- <th class="text-left">beginRdnmadr:시작지점도로명주소</th> -->
-								<!-- <th class="text-left">beginLnmadr:시작지점소재지지번주소</th> -->
 								<th class="text-left">종료지점명</th>
-								<!-- <th class="text-left">endRdnmadr:종료지점소재지도로명주소</th> -->
-								<!-- <th class="text-left">endLnmadr:종료지점소재지지번주소</th> -->
-								<!-- <th class="text-left">coursInfo:경로정보</th> -->
-								<!-- <th class="text-left">관리기관전화번호</th> -->
-								<!-- <th class="text-left">institutionNm:관리기관명</th> -->
-								<!-- <th class="text-left">데이터기준일자</th> -->
 								<th class="text-left">제공기관</th>
 							</tr>
 						</thead>
@@ -113,19 +104,10 @@
 								@click="roadRecordDetail(item)"
 							>
 								<td>{{ item.stretNm }}</td>
-								<!-- <td>{{ item.stretIntrcn }}</td> -->
 								<td>{{ item.stretLt }}</td>
 								<td>{{ item.reqreTime }}</td>
 								<td>{{ item.beginSpotNm }}</td>
-								<!-- <td>{{ item.beginRdnmadr }}</td>
-					<td>{{ item.beginLnmadr }}</td> -->
 								<td>{{ item.endSpotNm }}</td>
-								<!-- <td>{{ item.endRdnmadr }}</td>
-					<td>{{ item.endLnmadr }}</td>
-					<td>{{ item.coursInfo }}</td> -->
-								<!-- <td>{{ item.phoneNumber }}</td> -->
-								<!-- <td>{{ item.institutionNm }}</td> -->
-								<!-- <td>{{ item.referenceDate }}</td> -->
 								<td>{{ item.insttName }}</td>
 							</tr>
 						</tbody>
@@ -241,7 +223,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, getCurrentInstance, watch } from 'vue';
 import { getRoadRecordsList } from '@/api/common.js';
 import { getAreaList } from '@/api/area.js';
 import { useAuthStore } from '@/stores/auth';
@@ -252,6 +234,7 @@ const router = useRouter();
  * 유저 정보
  */
 const userInfo = useAuthStore().userInfo;
+const { proxy } = getCurrentInstance();
 
 const show = ref(false);
 const selectedArea = ref([]);
@@ -288,7 +271,6 @@ const fetchRoadRecordsList = async () => {
 	try {
 		const { data } = await getRoadRecordsList(params.value);
 		recordList.value = data;
-		console.log('dd');
 	} catch (error) {
 		console.error(error);
 	}
@@ -344,7 +326,6 @@ const fetchAreaList = async () => {
 };
 
 const searchList = () => {
-	console.log('selectedArea', selectedArea.value);
 	params.value._page = 1;
 	params.value.insttName = selectedArea.value;
 	fetchRoadRecordTotal();
@@ -432,8 +413,7 @@ const userLoginCheck = () => {
 };
 // 로그아웃 url 이동
 const logout = () => {
-	location.href =
-		'https://kauth.kakao.com/oauth/logout?client_id=36e5387cc0f77924d56d106a8075e5d7&logout_redirect_uri=http://127.0.0.1:5173/login';
+	location.href = `https://kauth.kakao.com/oauth/logout?client_id=${proxy.restApiKey}&logout_redirect_uri=${proxy.redirectUri}`;
 };
 
 // screen resize

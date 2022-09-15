@@ -10,7 +10,6 @@
 			>
 				<h2 class="mx-auto mb-8 align-center">간편 로그인</h2>
 
-				<!-- <a v-on:click="kakaoLoginBtn" -->
 				<a v-on:click="kakaoLoginBtn"
 					><img
 						src="https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png"
@@ -39,22 +38,23 @@
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import axios from 'axios';
 import { getUserDetail, createUser } from '@/api/user.js';
 
 const router = useRouter();
 const route = useRoute();
+const { proxy } = getCurrentInstance();
 const outhQueryString = ref(route.query.code);
 const kakaoLoginBtn = () => {
-	window.Kakao.init('c18fab152a25676a077cf400eb2523e8'); // Kakao Developers에서 요약 정보 -> JavaScript 키
+	window.Kakao.init(proxy.javaScriptKey); // Kakao Developers에서 요약 정보 -> JavaScript 키
 	// SDK 초기화 여부를 판단합니다.
 	console.log('sdk 초기화 여부', window.Kakao.isInitialized());
 	console.log('Auth', window.Kakao.Auth);
 
 	const params = {
-		redirectUri: 'http://127.0.0.1:5173/login',
+		redirectUri: proxy.redirectUri,
 	};
 	window.Kakao.Auth.authorize(params);
 };
@@ -63,7 +63,7 @@ const kakaoLoginBtn = () => {
  * 해당 인증코드로 토큰 요청
  */
 const kakaoHeader = {
-	Authorization: '0b22be07a2d4549ff70279c40fe5de40',
+	Authorization: proxy.adminKey,
 	'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
 };
 const getKakaoToken = async () => {
@@ -73,8 +73,8 @@ const getKakaoToken = async () => {
 	try {
 		const data = {
 			grant_type: 'authorization_code',
-			client_id: '36e5387cc0f77924d56d106a8075e5d7',
-			redirect_uri: 'http://127.0.0.1:5173/login',
+			client_id: proxy.restApiKey,
+			redirect_uri: proxy.redirectUri,
 			code: outhQueryString.value,
 		};
 		const queryString = Object.keys(data)
