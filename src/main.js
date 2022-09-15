@@ -27,6 +27,7 @@ app.config.globalProperties.restApiKey = '36e5387cc0f77924d56d106a8075e5d7';
 app.config.globalProperties.javaScriptKey = 'c18fab152a25676a077cf400eb2523e8';
 app.config.globalProperties.adminKey = '0b22be07a2d4549ff70279c40fe5de40';
 app.config.globalProperties.redirectUri = 'http://127.0.0.1:5173/login';
+
 console.log('MODE: ', import.meta.env.MODE);
 console.log('BASE_URL: ', import.meta.env.BASE_URL);
 console.log('PROD: ', import.meta.env.PROD);
