@@ -22836,9 +22836,23 @@
     },
     {
       "id": 2420109808,
-      "likeRoad": [],
+      "likeRoad": [  
+        {
+        "id": 1,
+        "point": 5
+        }
+      ],
       "gender": "male",
       "nickname": "조한빈"
+    }
+  ],
+  "likeRoad" : [
+    { 
+      "roadId": 1,
+      "userId": 2420109808,
+      "point": 5,
+      "review": "산책로가 깔끔하다.",
+      "creatAt": "2022/09/15 14:20:21" 
     }
   ]
 }

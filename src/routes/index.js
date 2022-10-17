@@ -22,6 +22,12 @@ const otherRoutes = [
 		meta: { anonymous: true },
 		component: () => import('@/views/projectInfo/ProjectUpdateView.vue'),
 	},
+	{
+		path: '/sampleChart',
+		name: 'SampleChart',
+		meta: { anonymous: true },
+		component: () => import('@/views/sample/SampleChart.vue'),
+	},
 ];
 
 let allRoutes = [];

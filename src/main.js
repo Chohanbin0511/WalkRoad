@@ -6,13 +6,18 @@ import router from '@/routes';
 import App from '@/App.vue';
 import { createPinia } from 'pinia';
 import piniaPersist from 'pinia-plugin-persist';
+import HighchartsVue from 'highcharts-vue';
+import Highcharts3D from 'highcharts/highcharts-3d';
+import Highcharts from 'highcharts';
+
+Highcharts3D(Highcharts);
 
 const app = createApp(App);
 
 const vuetify = createVuetify();
-
 app.use(router);
 app.use(vuetify);
+app.use(HighchartsVue);
 
 // app.use(globalDirectives);
 // app.use(globalComponents);

@@ -10,11 +10,17 @@
 			>
 				<h2 class="mx-auto mb-8 align-center">간편 로그인</h2>
 
-				<a v-on:click="kakaoLoginBtn"
-					><img
+				<a v-on:click="kakaoLoginBtn">
+					<!-- <img
 						src="https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png"
 						style="cursor: pointer"
-				/></a>
+				/> -->
+					<img :src="kakaoLoginImg" style="width: 200px; cursor: pointer" />
+				</a>
+				<!-- <a>
+					<img :src="naverLoginImg" style="width: 200px; cursor: pointer" />
+				</a>
+				<div id="naverIdLogin"></div> -->
 			</v-card>
 		</div>
 	</v-container>
@@ -38,10 +44,11 @@
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { ref, onMounted, getCurrentInstance } from 'vue';
+import { ref, onMounted, getCurrentInstance, onUpdated } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import axios from 'axios';
 import { getUserDetail, createUser } from '@/api/user.js';
+// import { naverService } from '@/api/naver.js';
 
 const router = useRouter();
 const route = useRoute();
@@ -132,10 +139,24 @@ const getKakaoToken = async () => {
 	}
 };
 
-onMounted(() => {
+const kakaoLoginImg = ref();
+const naverLoginImg = ref();
+
+onMounted(async () => {
+	kakaoLoginImg.value = (
+		await import(/* @vite-ignore */ '@/assets/img/kakao_login_btn.png')
+	).default;
+	naverLoginImg.value = (
+		await import(/* @vite-ignore */ '@/assets/img/naver_login_btn.png')
+	).default;
+
+	// naverService().setNaver();
 	if (outhQueryString.value) {
 		getKakaoToken();
 	}
+});
+onUpdated(() => {
+	// naverService().getUserInfo();
 });
 </script>
 
