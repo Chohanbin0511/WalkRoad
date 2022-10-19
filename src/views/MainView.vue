@@ -191,7 +191,6 @@ import naverMap from '@/components/naverMap.vue';
 import { ref, onMounted, watch } from 'vue';
 import { getRoadRecordsList } from '@/api/common.js';
 import { getAreaList } from '@/api/area.js';
-import { records } from '@/stores/db.json';
 /**
  * 유저 정보
  */
@@ -248,7 +247,6 @@ const fetchRoadRecordTotal = async () => {
 	try {
 		const { data } = await getRoadRecordsList(param);
 		recordTotal.value = data.length;
-		console.log('records', records);
 	} catch (error) {
 		console.error(error);
 	}
