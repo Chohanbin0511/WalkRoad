@@ -55,7 +55,7 @@ const route = useRoute();
 const { proxy } = getCurrentInstance();
 const outhQueryString = ref(route.query.code);
 const kakaoLoginBtn = () => {
-	// window.Kakao.init(proxy.javaScriptKey); // Kakao Developers에서 요약 정보 -> JavaScript 키
+	window.Kakao.init(proxy.javaScriptKey); // Kakao Developers에서 요약 정보 -> JavaScript 키
 	// SDK 초기화 여부를 판단합니다.
 	console.log('sdk 초기화 여부', window.Kakao.isInitialized());
 	console.log('Auth', window.Kakao.Auth);
