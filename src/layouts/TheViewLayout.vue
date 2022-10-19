@@ -1,51 +1,49 @@
 <template>
-	<v-card v-resize="onResize" :style="`height:${innerHeight}%;`">
-		<v-layout style="height: 100%">
-			<v-app-bar color="primary" density="compact">
-				<template v-slot:prepend>
-					<v-app-bar-nav-icon
-						@click.stop="drawer = !drawer"
-					></v-app-bar-nav-icon>
-				</template>
-				<v-app-bar-title>길</v-app-bar-title>
+	<!-- <v-card v-resize="onResize" :style="`height:${100}%;`"> -->
+	<v-layout v-resize="onResize" style="height: 100%">
+		<v-app-bar color="primary" density="compact">
+			<template v-slot:prepend>
+				<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+			</template>
+			<v-app-bar-title>길</v-app-bar-title>
 
-				<v-btn rounded="lg" color="white" size="large" @click="userLoginCheck">
-					{{ userInfo.isLogined ? '로그아웃 ' : '로그인' }}
-				</v-btn>
-			</v-app-bar>
+			<v-btn rounded="lg" color="white" size="large" @click="userLoginCheck">
+				{{ userInfo.isLogined ? '로그아웃 ' : '로그인' }}
+			</v-btn>
+		</v-app-bar>
 
-			<v-navigation-drawer v-model="drawer" bottom temporary>
-				<v-list density="compact">
-					<v-card width="400" class="mt-4 mb-4">
-						<template v-slot:title> Profile </template>
+		<v-navigation-drawer v-model="drawer" bottom temporary>
+			<v-list density="compact">
+				<v-card width="400" class="mt-4 mb-4">
+					<template v-slot:title> Profile </template>
 
-						<template v-slot:subtitle>
-							<v-icon> mdi-account-outline </v-icon>
-							{{ userInfo.userId }}
-						</template>
+					<template v-slot:subtitle>
+						<v-icon> mdi-account-outline </v-icon>
+						{{ userInfo.userId }}
+					</template>
 
-						<template v-slot:text> {{ userInfo.nickname }} </template>
-					</v-card>
-					<v-list-item
-						v-for="(item, i) in items"
-						:key="i"
-						:value="item.value"
-						active-color="primary"
-						@click="routeUrlChange(item.url)"
-					>
-						<template v-slot:prepend>
-							<v-icon :icon="item.icon"></v-icon>
-							<v-list-item-title>{{ item.title }}</v-list-item-title>
-						</template>
-					</v-list-item>
-				</v-list>
-			</v-navigation-drawer>
+					<template v-slot:text> {{ userInfo.nickname }} </template>
+				</v-card>
+				<v-list-item
+					v-for="(item, i) in items"
+					:key="i"
+					:value="item.value"
+					active-color="primary"
+					@click="routeUrlChange(item.url)"
+				>
+					<template v-slot:prepend>
+						<v-icon :icon="item.icon"></v-icon>
+						<v-list-item-title>{{ item.title }}</v-list-item-title>
+					</template>
+				</v-list-item>
+			</v-list>
+		</v-navigation-drawer>
 
-			<v-main>
-				<slot name="mainPanel" />
-			</v-main>
-		</v-layout>
-	</v-card>
+		<v-main>
+			<slot name="mainPanel" />
+		</v-main>
+	</v-layout>
+	<!-- </v-card> -->
 </template>
 
 <script setup>
