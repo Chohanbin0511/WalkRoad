@@ -44,7 +44,7 @@
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
-import { ref, onMounted, getCurrentInstance, onUpdated } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import axios from 'axios';
 import { getUserDetail, createUser } from '@/api/user.js';
@@ -140,23 +140,20 @@ const getKakaoToken = async () => {
 };
 
 const kakaoLoginImg = ref();
-const naverLoginImg = ref();
+// const naverLoginImg = ref();
 
 onMounted(async () => {
 	kakaoLoginImg.value = (
 		await import(/* @vite-ignore */ '@/assets/img/kakao_login_btn.png')
 	).default;
-	naverLoginImg.value = (
-		await import(/* @vite-ignore */ '@/assets/img/naver_login_btn.png')
-	).default;
+	// naverLoginImg.value = (
+	// 	await import(/* @vite-ignore */ '@/assets/img/naver_login_btn.png')
+	// ).default;
 
 	// naverService().setNaver();
 	if (outhQueryString.value) {
 		getKakaoToken();
 	}
-});
-onUpdated(() => {
-	// naverService().getUserInfo();
 });
 </script>
 

@@ -18,6 +18,6 @@ export function getRoadRecordDetail(record) {
 /**
  * 칼럼추가
  */
-export function patchRoadRecord(body) {
-	return walkRoadRecords.post(``, body);
+export function patchRoadRecord(id, body) {
+	return walkRoadRecords.patch(`/${id}`, body);
 }

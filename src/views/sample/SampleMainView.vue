@@ -7,7 +7,7 @@
 			<!-- 검색 창-->
 			<v-container>
 				<v-row>
-					<v-col cols="10">
+					<v-col cols="11">
 						<v-combobox
 							v-model="selectedArea"
 							:items="inputAreaList"
@@ -41,7 +41,6 @@
 					</v-col>
 				</v-row>
 			</v-container>
-
 			<!-- 총 개수 -->
 			<v-container>
 				<div>총 개수 : {{ recordTotal }}</div>
@@ -91,13 +90,11 @@
 	<v-row justify="center">
 		<v-dialog v-model="dialog">
 			<v-card class="mx-auto" width="600px">
-				<!-- <v-img
+				<v-img
 					src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
 					height="200px"
 					cover
-				></v-img> -->
-				<!-- naver map -->
-				<naverMap :detail-info="detailInfo"></naverMap>
+				></v-img>
 				<v-card-title> {{ detailInfo.stretNm }} </v-card-title>
 				<v-card-subtitle>
 					Contact Info :
@@ -187,11 +184,10 @@
 
 <script setup>
 import TheViewLayout from '@/layouts/TheViewLayout.vue';
-import naverMap from '@/components/naverMap.vue';
 import { ref, onMounted, watch } from 'vue';
 import { getRoadRecordsList } from '@/api/common.js';
 import { getAreaList } from '@/api/area.js';
-import { records } from '@/stores/db.json';
+
 /**
  * 유저 정보
  */
@@ -231,7 +227,6 @@ const fetchRoadRecordsList = async () => {
 	try {
 		const { data } = await getRoadRecordsList(params.value);
 		recordList.value = data;
-		console.log('data', data);
 	} catch (error) {
 		console.error(error);
 	}
@@ -248,7 +243,7 @@ const fetchRoadRecordTotal = async () => {
 	try {
 		const { data } = await getRoadRecordsList(param);
 		recordTotal.value = data.length;
-		console.log('records', records);
+		console.log('data', data.length);
 	} catch (error) {
 		console.error(error);
 	}
@@ -261,7 +256,6 @@ const roadRecordDetail = item => {
 	detailCoursInfo.value = [];
 	dialog.value = true;
 	detailInfo.value = item;
-	console.log('detailInfo', detailInfo.value);
 	item.coursInfo.split('-').forEach((el, idx) => {
 		detailCoursInfo.value[idx] = {
 			place: el,
@@ -269,6 +263,7 @@ const roadRecordDetail = item => {
 			num: idx + 1,
 		};
 	});
+	console.log('detailCoursInfo', detailCoursInfo.value);
 };
 
 const closeRecordDetail = () => {

@@ -1,5 +1,5 @@
 <template>
-	<v-card v-resize="onResize" :style="`height:${innerHeight}px;`">
+	<v-card v-resize="onResize" :style="`height:${100}%;`">
 		<v-layout style="height: 100%">
 			<v-app-bar color="primary" density="compact">
 				<template v-slot:prepend>
@@ -109,18 +109,18 @@ const items = ref([
 		value: 'list',
 		url: '/',
 	},
-	{
-		icon: 'mdi-alarm',
-		title: 'Q&A',
-		value: 'qna',
-		url: '/updateNote',
-	},
-	{
-		icon: 'mdi-bulletin-board',
-		title: 'Notice',
-		value: 'notice',
-		url: '/updateNote',
-	},
+	// {
+	// 	icon: 'mdi-alarm',
+	// 	title: 'Q&A',
+	// 	value: 'qna',
+	// 	url: '/updateNote',
+	// },
+	// {
+	// 	icon: 'mdi-bulletin-board',
+	// 	title: 'Notice',
+	// 	value: 'notice',
+	// 	url: '/updateNote',
+	// },
 	{
 		icon: 'mdi-update',
 		title: 'UpdateInfo',

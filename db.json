@@ -91,7 +91,9 @@
       "institutionNm": "합천군청 문화체육과",
       "referenceDate": "2021-08-31",
       "insttCode": "5480000",
-      "insttName": "경상남도 합천군"
+      "insttName": "경상남도 합천군",
+      "beginLatitude": "128.1034177",
+      "beginLongitude": "35.3810484"
     },
     {
       "id": 2,
@@ -110,7 +112,9 @@
       "institutionNm": "합천군청 산림과",
       "referenceDate": "2021-08-31",
       "insttCode": "5480000",
-      "insttName": "경상남도 합천군"
+      "insttName": "경상남도 합천군",
+      "beginLatitude": "128.0024716",
+      "beginLongitude": "35.4741418"
     },
     {
       "id": 3,
@@ -129,7 +133,9 @@
       "institutionNm": "합천군청 관광진흥과",
       "referenceDate": "2021-08-31",
       "insttCode": "5480000",
-      "insttName": "경상남도 합천군"
+      "insttName": "경상남도 합천군",
+      "beginLatitude": "128.0293650",
+      "beginLongitude": "35.5311646"
     },
     {
       "id": 4,
@@ -148,7 +154,9 @@
       "institutionNm": "합천군청 환경위생과",
       "referenceDate": "2021-08-31",
       "insttCode": "5480000",
-      "insttName": "경상남도 합천군"
+      "insttName": "경상남도 합천군",
+      "beginLatitude": "128.1623168",
+      "beginLongitude": "35.5535858"
     },
     {
       "id": 5,
@@ -186,7 +194,9 @@
       "institutionNm": "합천군청 문화체육과",
       "referenceDate": "2021-08-31",
       "insttCode": "5480000",
-      "insttName": "경상남도 합천군"
+      "insttName": "경상남도 합천군",
+      "beginLatitude": "128.2824050",
+      "beginLongitude": "35.5801906"
     },
     {
       "id": 7,
@@ -262,7 +272,9 @@
       "institutionNm": "서산시청 관광과",
       "referenceDate": "2021-08-06",
       "insttCode": "4530000",
-      "insttName": "충청남도 서산시"
+      "insttName": "충청남도 서산시",
+      "beginLatitude": "126.6032070",
+      "beginLongitude": "36.7622286"
     },
     {
       "id": 11,
@@ -281,7 +293,9 @@
       "institutionNm": "강원도 춘천시청",
       "referenceDate": "2021-09-06",
       "insttCode": "4180000",
-      "insttName": "강원도 춘천시"
+      "insttName": "강원도 춘천시",
+      "beginLatitude": "127.6080363",
+      "beginLongitude": "37.8376114"
     },
     {
       "id": 12,
@@ -319,7 +333,9 @@
       "institutionNm": "강원도 춘천시청",
       "referenceDate": "2021-09-06",
       "insttCode": "4180000",
-      "insttName": "강원도 춘천시"
+      "insttName": "강원도 춘천시",
+      "beginLatitude": "127.7169707",
+      "beginLongitude": "37.8850338"
     },
     {
       "id": 14,
@@ -671,9 +687,9 @@
       "reqreTime": "3",
       "beginSpotNm": "진양교",
       "beginRdnmadr": "경상남도 진주시 강남로",
-      "beginLnmadr": "",
+      "beginLnmadr": "경상남도 진주시 강남로",
       "endSpotNm": "천수교",
-      "endRdnmadr": "",
+      "endRdnmadr": "경상남도 진주시 망경동 146-5",
       "endLnmadr": "경상남도 진주시 망경동 146-5",
       "coursInfo": "진양교-새벼리-석류공원-연암공과대학교 뒤편-가좌산-망진산 봉수대-천수교",
       "phoneNumber": "055-749-8597",
@@ -22836,23 +22852,23 @@
     },
     {
       "id": 2420109808,
-      "likeRoad": [  
+      "likeRoad": [
         {
-        "id": 1,
-        "point": 5
+          "id": 1,
+          "point": 5
         }
       ],
       "gender": "male",
       "nickname": "조한빈"
     }
   ],
-  "likeRoad" : [
-    { 
+  "likeRoad": [
+    {
       "roadId": 1,
       "userId": 2420109808,
       "point": 5,
       "review": "산책로가 깔끔하다.",
-      "creatAt": "2022/09/15 14:20:21" 
+      "creatAt": "2022/09/15 14:20:21"
     }
   ]
 }
