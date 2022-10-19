@@ -1,5 +1,5 @@
 <template>
-	<v-card v-resize="onResize" :style="`height:${100}%;`">
+	<v-card v-resize="onResize" :style="`height:${innerHeight}%;`">
 		<v-layout style="height: 100%">
 			<v-app-bar color="primary" density="compact">
 				<template v-slot:prepend>
