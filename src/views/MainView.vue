@@ -311,6 +311,13 @@ watch(
 	},
 	{ deep: true },
 );
+watch(
+	() => dialog.value,
+	newValue => {
+		if (!newValue) show.value = false;
+	},
+	{ deep: true },
+);
 </script>
 
 <style lang="scss" scoped></style>
