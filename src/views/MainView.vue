@@ -91,12 +91,6 @@
 	<v-row justify="center">
 		<v-dialog v-model="dialog">
 			<v-card class="mx-auto" width="600px">
-				<!-- <v-img
-					src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-					height="200px"
-					cover
-				></v-img> -->
-				<!-- naver map -->
 				<naverMap :detail-info="detailInfo"></naverMap>
 				<v-card-title> {{ detailInfo.stretNm }} </v-card-title>
 				<v-card-subtitle>
