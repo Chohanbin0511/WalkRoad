@@ -1,5 +1,5 @@
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=WK-ROAD&animation=fadeIn&fontAlignY=38&desc=전국%20둘레길%20조회%20서비스&descAlignY=51&descAlign=62)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Walk-Road&animation=fadeIn&fontAlignY=38&desc=전국%20둘레길%20조회%20서비스&descAlignY=51&descAlign=62)
 
 
 
