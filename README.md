@@ -1,68 +1,38 @@
-# 전국 둘레 길 조회
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Fhir-Test-web&animation=fadeIn&fontAlignY=38&desc=전국%20둘레길%20조회%20서비스&descAlignY=51&descAlign=62)
 
 
-### json-server 실행 (port는 임의로 지정)
 
-``` sh
-json-server --watch db.json --port 3000
-```
+<p align='center'> Demo Web Preiview </p>
+<p align='center'>
+  <a href="https://walkingroadko.netlify.app">
+    <img src="https://img.shields.io/badge/DEMO%20-%234FC08D.svg?&style=for-the-badge&&logoColor=white"/>
+  </a>
+</p>
 
-### records 필드명 조회
-```sh
-http://localhost:3000/fields
-검색조건 , 컬럼명_gte=2000&컬럼명_lte=5000
-?_page=2&_limit=2
-?_sort=price
-?컬럼명_ne=1 -> 1인 값 제외
-?컬럼명_like=^f
-```
-``` sh
-'https://www.pettravel.kr/api/detailSeqPart.do?partCode=PC02&contentNum=1',
-json-sever db.json 사용
-'http://localhost:3000/records?INSTT_NAME=경기도 부천시',
-Encoding 인증
-`http://api.data.go.kr/openapi/tn_pubr_public_stret_tursm_info_api?serviceKey=8SijyesKfn%2BCsFIvHOJH4vstiQDcX%2B3o%2BYNWRf0EcuSFhw%2FYGPVeIFyc%2BROSfhduIKsyBFSWQ2M4%2FHw8TTWIYQ%3D%3D`,
-Decoding 인증
-`http://api.data.go.kr/openapi/tn_pubr_public_stret_tursm_info_napi?serviceKey=8SijyesKfn+CsFIvHOJH4vstiQDcX+3o+YNWRf0EcuSFhw/YGPVeIFyc+ROSfhduIKsyBFSWQ2M4/Hw8TTWIYQ==`,
-```
-### 적용 기술 스택 ###
-``` sh
-server & DB : json-server
-client : vue3, composition api
-UI : UI Framework Vutify 3.0 (Beta) 사용
-OPEN API : Kakao [Login, Logout, token]
-```
+
+<!-- ABOUT THE PROJECT -->
+## 📖 About The Project
+전국 둘레길 정보를 조회할 수 있다.
+
+
+
+## 🧑‍💻 Built With
+
+해당 프로젝트를 구성한 Tech Skill List입니다.
+
+ | Category                                                   | Stack                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------- |
+| **Frontend**                 | Vue3, JavaScript |
+| **UI Framework**             | Vuetify3.0  |
+| **Deployment**               | Netlify, Heroku  |
+| **Open Data**             | 전국 둘레길 정보[공공 데이터] |
+| **Open API**             |  Naver Map , Kakao Login |
+
+## 🚩 Update
+
+➡ <b>(2022-10-19) : 길 상세정보 지도에 표시 (출발점, 도착점)</b><br>
+➡ <b>(2022-09-20) : Kakao Login 기능 추가</b><br>
+➡ <b>(2022-09-15) : 둘레길 정보조회 및 검색 기능</b><br> 
+
+
